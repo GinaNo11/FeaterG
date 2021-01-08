@@ -1,0 +1,58 @@
+﻿@page
+@model FeaterG.Pages.Users.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<div class="whiteBackground">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Users List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-area="Identity"  asp-page="/Account/Register" class="btn btn-info"><i class="fas fa-plus"></i> &nbsp; New User</a>
+        </div>
+    </div>
+    <div>
+        @if (Model.ApplicationUserList.Count() == 0 )
+        {
+            <p>You have no Service Type , Please Create new serves </p>
+        }
+        else
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>@Html.DisplayNameFor(m => m.ApplicationUserList[0].FullName)</th>
+                    <th>@Html.DisplayNameFor(m => m.ApplicationUserList[0].Email)</th>
+                    <th>@Html.DisplayNameFor(m => m.ApplicationUserList[0].PhoneNumber)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.ApplicationUserList)
+                {
+              <tr>
+                <td>@Html.DisplayFor(m => item.FullName)</td>
+                <td>@Html.DisplayFor(m => item.Email)</td>
+                <td>@Html.DisplayFor(m => item.PhoneNumber)</td>
+                 <td>
+                     <a asp-page="../Cars/Index"  class="btn btn-outline-info" asp-route-UserId="@item.Id"> MyCars </a>
+                 </td>
+                <td style="width:130px">
+                    <div class="btn-group" role="group">
+                        <a asp-page="Edite" class="btn btn-primary text-white" title="Edite" asp-route-Id="@item.Id"><i class="far fa-edit"></i></a>
+                        <a asp-page="Delete" class="btn btn-danger text-white" title="Delete" asp-route-Id="@item.Id"> <i class="far fa-trash-alt"></i></a>
+                        <a asp-page="Details" class="btn btn-success text-white" title="Details" asp-route-Id="@item.Id"> <i class="fas fa-info-circle"></i></a>
+                    </div>
+
+
+                </td>
+              </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

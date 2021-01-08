@@ -1,0 +1,47 @@
+﻿@page
+@model FeaterG.Pages.ServiceTypes.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-white">Details of Service Type</h2>
+<div class="whiteBackground">
+    <form method="post">
+        <input type="hidden" asp-for="ServiceType.Id" />
+        <div class="form-group">
+            <div class=" form-group row">
+                <div class="col-3">
+                    <label asp-for="ServiceType.ServiceName"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="ServiceType.ServiceName" class="form-control" disabled="disabled"/>
+                </div>
+                
+            </div>
+            <div class=" form-group row">
+                <div class="col-3">
+                    <label asp-for="ServiceType.Price"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="ServiceType.Price" class="form-control" disabled="disabled"/>
+                </div>
+                
+            </div>
+            <div class="row form-group">
+                <div class="col-6 offset-3">
+                    <div class="row">
+                        <div class="col-6">
+                          @*  <input type="submit" class="btn btn-primary form-control" value="Edite" />*@
+                            <a asp-page="Edite" class="btn btn-primary form-control" asp-route-Id="@Model.ServiceType.Id">Back To Edite</a>
+                        </div>
+
+                        <div class="col-6">
+                            <a asp-page="/ServiceTypes/Index" class="btn btn-success form-control">Back To List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
